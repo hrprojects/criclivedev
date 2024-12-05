@@ -75,10 +75,10 @@
     // Fetch the video URL securely
     function fetchAndPlay(quality) {
       const urlMap = {
-        '240p': 'criclivedev.free.nf/secure-api/get-video.php?quality=240p',
-        '360p': 'criclivedev.free.nf/secure-api/get-video.php?quality=360p',
-        '720p': 'criclivedev.free.nf/secure-api/get-video.php?quality=720p',
-        '1080p': 'criclivedev.free.nf/secure-api/get-video.php?quality=1080p'
+        '240p': 'http://criclivedev.free.nf/secure-api/get-video.php?quality=240p',
+        '360p': 'http://criclivedev.free.nf/secure-api/get-video.php?quality=360p',
+        '720p': 'http://criclivedev.free.nf/secure-api/get-video.php?quality=720p',
+        '1080p': 'http://criclivedev.free.nf/secure-api/get-video.php?quality=1080p'
       };
 
       const videoUrl = urlMap[quality];
