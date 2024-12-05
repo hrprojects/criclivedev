@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure JW Player HLS Stream</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .video-container {
+      width: 80%;
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: #000;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    #player {
+      width: 100%;
+      height: 450px;
+    }
+    .quality-buttons {
+      margin: 20px 0;
+    }
+    .quality-buttons button {
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .quality-buttons button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+  <script src="https://cdn.jwplayer.com/libraries/IDzF9Zmk.js"></script>
+</head>
+<body>
+  <div class="video-container">
+    <div id="player"></div>
+  </div>
+
+  <div class="quality-buttons">
+    <button onclick="fetchAndPlay('240p')">240p</button>
+    <button onclick="fetchAndPlay('360p')">360p</button>
+    <button onclick="fetchAndPlay('720p')">720p</button>
+    <button onclick="fetchAndPlay('1080p')">1080p</button>
+  </div>
+
+  <script>
+    // Block Right-Click and Developer Tools
+    document.addEventListener("contextmenu", (e) => e.preventDefault());
+    document.addEventListener("keydown", (e) => {
+      if (
+        e.key === "F12" || 
+        (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) || 
+        (e.ctrlKey && e.key === "U")
+      ) {
+        e.preventDefault();
+      }
+    });
+
+    // Fetch the video URL securely
+    function fetchAndPlay(quality) {
+      const urlMap = {
+        '240p': '/secure-api/get-video?quality=240',
+        '360p': '/secure-api/get-video?quality=360',
+        '720p': '/secure-api/get-video?quality=720',
+        '1080p': '/secure-api/get-video?quality=1080'
+      };
+
+      const videoUrl = urlMap[quality];
+
+      // Fetch the actual video URL from the backend
+      fetch(videoUrl)
+        .then((response) => {
+          if (response.ok) {
+            return response.json(); // Backend should return { "url": "HLS_VIDEO_URL" }
+          } else {
+            throw new Error('Failed to fetch video URL');
+          }
+        })
+        .then((data) => {
+          jwplayer("player").setup({
+            file: data.url,
+            width: "100%",
+            aspectratio: "16:9",
+            autostart: false,
+            controls: true,
+          });
+        })
+        .catch((err) => {
+          alert("Error fetching video URL: " + err.message);
+        });
+    }
+
+    // Load default video
+    fetchAndPlay('240p');
+  </script>
+</body>
+</html>
