@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Star Sports Live Hindi</title>
+  <script src="https://cdn.jwplayer.com/libraries/IDzF9Zmk.js"></script>
   <style>
     body {
       margin: 0;
@@ -15,8 +16,10 @@
       justify-content: center;
       height: 100vh;
     }
-    .h6 {
-text-align: centre ;
+    h6 {
+      text-align: center;
+      color: #333;
+      margin: 10px;
     }
     .video-container {
       width: 80%;
@@ -31,36 +34,17 @@ text-align: centre ;
       width: 100%;
       height: 450px;
     }
-    .quality-buttons {
-      margin: 20px 0;
-    }
-    .quality-buttons button {
-      padding: 10px 20px;
-      margin: 5px;
-      border: none;
-      background-color: #007bff;
-      color: white;
-      font-size: 16px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .quality-buttons button:hover {
-      background-color: #0056b3;
-    }
   </style>
-  <script src="https://cdn.jwplayer.com/libraries/IDzF9Zmk.js"></script>
 </head>
 <body>
   <h6>~Design & Develop By Harshit Choudhary</h6>
   <div class="video-container">
     <div id="player"></div>
   </div>
-  <h6>If Player Stop 🛑 Refresh Page Or Change Video 📷 Quality  </h6>
-
-    <h6>Only Play ⏯️ in Mobile 📱 Not in Desktop 🖥️ </h6>
-
+  <h6>If Player Stops 🛑, Refresh Page or Change Video 📷 Quality</h6>
+  <h6>Only Play ⏯️ on Mobile 📱, Not on Desktop 🖥️</h6>
   <script>
-    // Initialize JW Player with a default stream
+    // Initialize JW Player with the provided m3u8 link
     jwplayer("player").setup({
       file: "https://vkvsd14.okcdn.ru/cmaf/7381061929703/sig/JlPj5oTsuqw/srcIp/3.108.194.217/urls/185.226.53.64/expires/1733778651433/clientType/13/srcAg/CHROME/fromCache/1/mid/8776469523431/id/7381061929703/get/hls_8776469523431.bFDIKY46s2E.m3u8",
       width: "100%",
@@ -69,64 +53,38 @@ text-align: centre ;
       controls: true
     });
 
-  
-  
-<script type="text/javascript">
- var tryCount = 0;
- var minimalUserResponseInMiliseconds = 200;
- function check() {
-before = new Date().getTime();
-debugger;
-after = new Date().getTime();
-if (after - before > minimalUserResponseInMiliseconds) {
-document.write(" Alert!! Close Developer Tools Now... ");
-self.location.replace(window.location.protocol + window.location.href.substring(window.location.protocol.length));
-}else{
-before = null;
-after = null;
-delete before;
-delete after;
-}
-setTimeout(check, 100);
- }
- check();
- window.onload = function() {
-document.addEventListener("contextmenu", function(e){
-e.preventDefault();
-}, false);
-document.addEventListener("keydown", function(e) {
-//document.onkeydown = function(e) {
-// "I" key
-if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
-disabledEvent(e);
-}
-// "J" key
-if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
-disabledEvent(e);
-}
-// "S" key + macOS
-if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
-disabledEvent(e);
-}
-// "U" key
-if (e.ctrlKey && e.keyCode == 85) {
-disabledEvent(e);
-}
-// "F12" key
-if (event.keyCode == 123) {
-disabledEvent(e);
-}
-}, false);
-function disabledEvent(e){
-if (e.stopPropagation){
-e.stopPropagation();
-} else if (window.event){
-window.event.cancelBubble = true;
-}
-e.preventDefault();
-return false;
-}
- };
-</script>
+    // Detect and block developer tools
+    var tryCount = 0;
+    var minimalUserResponseInMilliseconds = 200;
+
+    function checkDevTools() {
+      var before = new Date().getTime();
+      debugger;
+      var after = new Date().getTime();
+      if (after - before > minimalUserResponseInMilliseconds) {
+        document.write("Alert!! Close Developer Tools Now...");
+        self.location.replace(window.location.protocol + window.location.href.substring(window.location.protocol.length));
+      }
+      setTimeout(checkDevTools, 100);
+    }
+    checkDevTools();
+
+    // Disable right-click and certain key combinations
+    window.onload = function () {
+      document.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if ((e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || // Ctrl+Shift+I or Ctrl+Shift+J
+            (e.keyCode === 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) || // Ctrl+S or Command+S
+            (e.ctrlKey && e.keyCode === 85) || // Ctrl+U
+            (e.keyCode === 123)) { // F12
+          e.preventDefault();
+          return false;
+        }
+      });
+    };
+  </script>
 </body>
 </html>
