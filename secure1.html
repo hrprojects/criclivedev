@@ -57,31 +57,19 @@ text-align: centre ;
   </div>
   <h6>If Player Stop 🛑 Refresh Page Or Change Video 📷 Quality  </h6>
 
-  <div class="quality-buttons">
-    <button onclick="changeQuality('https://vkvsd14.okcdn.ru/cmaf/7381061929703/sig/JlPj5oTsuqw/srcIp/3.108.194.217/urls/185.226.53.64/expires/1733778651433/clientType/13/srcAg/CHROME/fromCache/1/mid/8776469523431/id/7381061929703/get/COfX5PK2_wEQ6AcYAjIICgYIqAMQ8AE6BAjE2AJaBBACKBdiAggQ6hou_9sEjuQ/track.m3u8')">240p</button>
-    <button onclick="changeQuality('https://vkvsd14.okcdn.ru/cmaf/7381061929703/sig/JlPj5oTsuqw/srcIp/3.108.194.217/urls/185.226.53.64/expires/1733778651433/clientType/13/srcAg/CHROME/fromCache/1/mid/8776469523431/id/7381061929703/get/COfX5PK2_wEQ6AcYAzIICgYIgAUQ6AI6BAjE2AJaBggBEAIoF2ICCBBpbYZ53zFQOQ/track.m3u8')">360p</button>
-    <button onclick="changeQuality('https://vkvsd14.okcdn.ru/cmaf/7381061929703/sig/JlPj5oTsuqw/srcIp/3.108.194.217/urls/185.226.53.64/expires/1733778651433/clientType/13/srcAg/CHROME/fromCache/1/mid/8776469523431/id/7381061929703/get/COfX5PK2_wEQ6AcYBDIICgYI2AYQ4AM6BAjE2AJaBggBEAIoF2ICCBDxVRk4k6ndgA/track.m3u8')">720p</button>
-    <button onclick="changeQuality('https://vkvsd14.okcdn.ru/cmaf/7381061929703/sig/JlPj5oTsuqw/srcIp/3.108.194.217/urls/185.226.53.64/expires/1733778651433/clientType/13/srcAg/CHROME/fromCache/1/mid/8776469523431/id/7381061929703/get/COfX5PK2_wEQ6AcYBjIICgYIgA8QuAg6BAjE2AJaBggDEAIoF2ICCCAvjwdOOwTQ1Q/track.m3u8')">1080p</button>
-  </div>
-
     <h6>Only Play ⏯️ in Mobile 📱 Not in Desktop 🖥️ </h6>
 
   <script>
     // Initialize JW Player with a default stream
     jwplayer("player").setup({
-      file: "https://vkvsd14.okcdn.ru/cmaf/7381061929703/sig/JlPj5oTsuqw/srcIp/3.108.194.217/urls/185.226.53.64/expires/1733778651433/clientType/13/srcAg/CHROME/fromCache/1/mid/8776469523431/id/7381061929703/get/COfX5PK2_wEQ6AcYAjIICgYIqAMQ8AE6BAjE2AJaBBACKBdiAggQ6hou_9sEjuQ/track.m3u8",
+      file: "https://vkvsd14.okcdn.ru/cmaf/7381061929703/sig/JlPj5oTsuqw/srcIp/3.108.194.217/urls/185.226.53.64/expires/1733778651433/clientType/13/srcAg/CHROME/fromCache/1/mid/8776469523431/id/7381061929703/get/hls_8776469523431.bFDIKY46s2E.m3u8",
       width: "100%",
       aspectratio: "16:9",
       autostart: false,
       controls: true
     });
 
-    // Function to change video quality
-    function changeQuality(url) {
-      jwplayer("player").load([{ file: url }]);
-      jwplayer("player").play();
-    }
-  </script>
+  
   
 <script type="text/javascript">
  var tryCount = 0;
